@@ -1,15 +1,14 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IoMdWallet } from 'react-icons/io';
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { resetWeb3State, setWeb3HandlerAsync } from '../../redux/slices/web3Slice';
+import { setWeb3HandlerAsync } from '../../redux/slices/web3Slice';
 import logoImage from '../../assets/brand/app-logo.png';
 import { getShortenedAddressAccount, validateMetamask } from '../../utils/retirementPlanUtils';
 import { PlanTypes } from '../../constants/constants';
-import { getPlanDetailAsync, resetPlansState } from '../../redux/slices/plansSlice';
+import { getPlanDetailAsync } from '../../redux/slices/plansSlice';
 import { SecondaryButton } from '../../components/SecondaryButton/SecondaryButton';
 import './styles.scss';
 
@@ -35,44 +34,6 @@ export const Navbar = () => {
   const goToHome = () => {
     navigate('/');
   };
-
-  // useEffect(() => {
-  //   const initWeb3 = async () => {
-  //     if (window.ethereum) {
-  //       try {
-  //         const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-  //         if (accounts.length > 0) {
-  //           dispatch(setWeb3HandlerAsync()).then(() => {
-  //             dispatch(getPlanDetailAsync());
-  //           });
-  //         }
-  //       } catch (error) {
-  //         console.error('Error al intentar recuperar cuentas:', error);
-  //       }
-  //     }
-  //   };
-
-  //   if (window.ethereum) {
-  //     initWeb3();
-
-  //     window.ethereum.on('accountsChanged', (accounts: any) => {
-  //       if (accounts.length > 0) {
-  //         dispatch(setWeb3HandlerAsync()).then(() => {
-  //           dispatch(getPlanDetailAsync());
-  //         });
-  //       } else {
-  //         dispatch(resetWeb3State());
-  //         dispatch(resetPlansState());
-  //       }
-  //     });
-  //   }
-
-  //   return () => {
-  //     if (window.ethereum && window.ethereum.removeListener) {
-  //       window.ethereum.removeListener('accountsChanged', initWeb3);
-  //     }
-  //   };
-  // }, [dispatch]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
